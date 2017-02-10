@@ -23,6 +23,7 @@ import android.view.WindowManager;
 import com.lyh.app.R;
 import com.lyh.app.ui.fragment.CustomFragment;
 import com.lyh.app.ui.fragment.MainUIFragment;
+import com.lyh.app.utils.StatusBarCompat;
 
 import java.lang.reflect.Field;
 
@@ -68,6 +69,7 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+        StatusBarCompat.translucentStatusBar(this,true);
     }
 
     private void setDrawerLeftEdgeSize(Activity activity, DrawerLayout drawerLayout, float displayWidthPercentage) {

@@ -3,13 +3,12 @@ package com.lyh.app.ui.activity;
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.os.Build;
+import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -19,6 +18,7 @@ import android.widget.Toast;
 
 import com.lyh.app.R;
 import com.lyh.app.ui.fragment.CoordinatorTabLayoutFragment;
+import com.lyh.app.utils.StatusBarCompat;
 
 import java.util.ArrayList;
 
@@ -37,13 +37,8 @@ public class CoordinatorTabLayoutActivity extends AppCompatActivity {
             activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
             // 透明导航栏
             activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
-
-            //setTranslucentStatus(activity, true);
+            StatusBarCompat.translucentStatusBar(activity, true);
         }
-        //SystemBarTintManager tintManager = new SystemBarTintManager(activity);
-        //tintManager.setStatusBarTintEnabled(true);
-        // 使用颜色资源
-        //tintManager.setStatusBarTintResource(R.color.status_color);
     }
 
     @TargetApi(19)
