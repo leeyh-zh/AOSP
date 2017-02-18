@@ -9,7 +9,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".ui.activity.MainActivity"
+            android:name=".main.activity.MainActivity"
             android:label="开源项目集合"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
@@ -19,9 +19,11 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ui.activity.CoordinatorTabLayoutActivity"
+            android:name=".homepage.coordinatorTabLayout.CTLActivity"
             android:label="CoordinatorTabLayoutActivity"
-            android:theme="@style/TransparencyTheme" />
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+
+        <activity android:name=".statusbarTabs.StatusBarCompat.activity.StatusBarCompatActivity"/>
     </application>
 
 </manifest>

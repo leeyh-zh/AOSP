@@ -3,9 +3,8 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/AOSP.iml" filepath="$PROJECT_DIR$/AOSP.iml" />
-      <module fileurl="file://$PROJECT_DIR$/CoordinatorTabLayout/CoordinatorTabLayout.iml" filepath="$PROJECT_DIR$/CoordinatorTabLayout/CoordinatorTabLayout.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/coordinator/coordinator.iml" filepath="$PROJECT_DIR$/coordinator/coordinator.iml" />
+      <module fileurl="file://$PROJECT_DIR$/coordinatortablayout/coordinatortablayout.iml" filepath="$PROJECT_DIR$/coordinatortablayout/coordinatortablayout.iml" />
     </modules>
   </component>
 </project>

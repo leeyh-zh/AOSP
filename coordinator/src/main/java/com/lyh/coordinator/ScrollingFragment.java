@@ -5,6 +5,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.ColorInt;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v4.app.Fragment;
@@ -75,10 +76,10 @@ public class ScrollingFragment extends Fragment {
     @Override
     public void onHiddenChanged(boolean hidden) {
         super.onHiddenChanged(hidden);
-        if (!hidden) {
-            StatusBarCompat.translucentStatusBar(activity, true);
-            StatusBarCompat.setStatusBarColorForCollapsingToolbar(activity,appBarLayout,collapsingToolbarLayout,toolbar,statusColor);
-        }
+        //if (!hidden) {
+            //StatusBarCompat.translucentStatusBar(getActivity(), true);
+            StatusBarCompat.setStatusBarColorForCollapsingToolbar(getActivity(),appBarLayout,collapsingToolbarLayout,toolbar,statusColor);
+       // }
     }
 
     class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyViewHolder> {

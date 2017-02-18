@@ -1,4 +1,4 @@
-package com.lyh.app.ui.activity;
+package com.lyh.app.main.activity;
 
 import android.app.Activity;
 import android.graphics.Point;
@@ -21,8 +21,9 @@ import android.view.Window;
 import android.view.WindowManager;
 
 import com.lyh.app.R;
-import com.lyh.app.ui.fragment.CustomFragment;
-import com.lyh.app.ui.fragment.MainUIFragment;
+import com.lyh.app.main.fragment.MainUIFragment;
+import com.lyh.app.main.fragment.CustomFragment;
+import com.lyh.app.main.fragment.StatusBarTabsFragment;
 import com.lyh.app.utils.StatusBarCompat;
 
 import java.lang.reflect.Field;
@@ -30,8 +31,7 @@ import java.lang.reflect.Field;
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    private Fragment customView;
-    private Fragment mainUi;
+    private Fragment customView,mainUi,statusbarTabs;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity
             // 透明状态栏
             getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
             // 透明导航栏
-            getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
+            //getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
         }
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -68,8 +68,12 @@ public class MainActivity extends AppCompatActivity
         //setDrawerLeftEdgeSize(this, drawer, 0.8f);
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        //MenuItem menuItem = findViewById(R.id.custom_view);
         navigationView.setNavigationItemSelectedListener(this);
         StatusBarCompat.translucentStatusBar(this,true);
+        navigationView.getMenu().getItem(1).setChecked(true);
+        onNavigationItemSelected(navigationView.getMenu().findItem(R.id.main_UI));
+        //onNavigationItemSelected(R.id.custom_view);
     }
 
     private void setDrawerLeftEdgeSize(Activity activity, DrawerLayout drawerLayout, float displayWidthPercentage) {
@@ -136,21 +140,30 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         switch (item.getItemId()) {
             case R.id.custom_view:
+                item.setChecked(true);
                 if (customView == null)
                     customView = new CustomFragment();
                 addFragmentToStack(customView);
                 break;
             case R.id.main_UI:
+                item.setChecked(true);
                 if (mainUi == null)
                     mainUi = new MainUIFragment();
                 addFragmentToStack(mainUi);
+                break;
+            case R.id.statusBar_Tabs:
+                item.setChecked(true);
+                if (statusbarTabs == null)
+                    statusbarTabs = new StatusBarTabsFragment();
+                addFragmentToStack(statusbarTabs);
+                break;
             default:
                 break;
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
-        return true;
+        return false;
     }
 
     private void addFragmentToStack(Fragment fragment) {

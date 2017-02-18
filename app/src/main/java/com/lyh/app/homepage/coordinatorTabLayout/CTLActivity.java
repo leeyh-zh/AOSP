@@ -1,9 +1,8 @@
-package com.lyh.app.ui.activity;
+package com.lyh.app.homepage.coordinatorTabLayout;
 
-import android.annotation.TargetApi;
-import android.app.Activity;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.RequiresApi;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
@@ -11,40 +10,33 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Toast;
 
 import com.lyh.app.R;
-import com.lyh.app.ui.fragment.CoordinatorTabLayoutFragment;
 import com.lyh.app.utils.StatusBarCompat;
 
 import java.util.ArrayList;
 
-import cn.hugeterry.coordinatortablayout.CoordinatorTabLayout;
-
-public class CoordinatorTabLayoutActivity extends AppCompatActivity {
+public class CTLActivity extends AppCompatActivity {
     private CoordinatorTabLayout mCoordinatorTabLayout;
     private int[] mImageArray, mColorArray;
     private ArrayList<Fragment> mFragments;
     private final String[] mTitles = {"Android", "iOS", "前端", "拓展资源"};
     private ViewPager mViewPager;
 
-    public static void initSystemBar(Activity activity) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            StatusBarCompat.translucentStatusBar(activity, true);
-        }
-    }
-
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 //        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        Window window = getWindow();
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+//        getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
 //        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
 //                WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        initSystemBar(this);
-        setContentView(R.layout.activity_coordinator_tab_layout);
+        setContentView(R.layout.activity_coordinator_tablayout);
         initFragments();
         initViewPager();
         mImageArray = new int[]{
@@ -59,17 +51,18 @@ public class CoordinatorTabLayoutActivity extends AppCompatActivity {
                 R.color.colorFour};
 
         mCoordinatorTabLayout = (CoordinatorTabLayout) findViewById(R.id.coordinatortablayout);
-        mCoordinatorTabLayout.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
-        mCoordinatorTabLayout.setTitle("CoordinatorTabLayout")
+        mCoordinatorTabLayout.setTitle("Demo")
                 .setBackEnable(true)
                 .setImageArray(mImageArray, mColorArray)
                 .setupWithViewPager(mViewPager);
+        StatusBarCompat.translucentStatusBar(this,true);
+
     }
 
     private void initFragments() {
         mFragments = new ArrayList<>();
         for (String title : mTitles) {
-            mFragments.add(CoordinatorTabLayoutFragment.getInstance(title));
+            mFragments.add(CTLFragment.getInstance(title));
         }
     }
 
@@ -100,7 +93,7 @@ public class CoordinatorTabLayoutActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_coordinatortablayout_main, menu);
+        //getMenuInflater().inflate(R.menu.menu_main, menu);
         return super.onCreateOptionsMenu(menu);
     }
 

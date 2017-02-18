@@ -1,4 +1,4 @@
-package com.lyh.app.ui.fragment;
+package com.lyh.app.homepage.coordinatorTabLayout;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -19,7 +19,7 @@ import java.util.List;
  * Created by lyh on 2017/2/8.
  */
 
-public class CoordinatorTabLayoutFragment extends Fragment{
+public class CTLFragment extends Fragment{
     private RecyclerView mRecyclerView;
     private RecyclerAdapter mAdapter;
 
@@ -27,8 +27,8 @@ public class CoordinatorTabLayoutFragment extends Fragment{
     private static final String ARG_TITLE = "title";
     private String mTitle;
 
-    public static CoordinatorTabLayoutFragment getInstance(String title) {
-        CoordinatorTabLayoutFragment fra = new CoordinatorTabLayoutFragment();
+    public static CTLFragment getInstance(String title) {
+        CTLFragment fra = new CTLFragment();
         Bundle bundle = new Bundle();
         bundle.putString(ARG_TITLE, title);
         fra.setArguments(bundle);

@@ -9,4 +9,7 @@
     <color name="colorThree">#86CCCC</color>
     <color name="colorFour">#3C2515</color>
 
+    <color name="colorBlack">#000000</color>
+    <color name="colorBackground">#319bd2</color>
+
 </resources>

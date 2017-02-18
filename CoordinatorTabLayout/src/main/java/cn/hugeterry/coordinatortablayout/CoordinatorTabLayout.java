@@ -1,9 +1,11 @@
 package cn.hugeterry.coordinatortablayout;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.res.ColorStateList;
 import android.content.res.TypedArray;
 import android.graphics.Color;
+import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.TabLayout;
@@ -15,6 +17,8 @@ import android.support.v7.widget.Toolbar;
 import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 
@@ -23,13 +27,13 @@ import android.widget.ImageView;
  */
 
 public class CoordinatorTabLayout extends CoordinatorLayout {
-
     private Context mContext;
+    private AppBarLayout appBarLayout;
+    private CollapsingToolbarLayout mCollapsingToolbarLayout;
     private Toolbar mToolbar;
     private ActionBar mActionbar;
     private TabLayout mTabLayout;
     private ImageView mImageView;
-    private CollapsingToolbarLayout mCollapsingToolbarLayout;
 
     public CoordinatorTabLayout(Context context) {
         super(context);
@@ -60,6 +64,7 @@ public class CoordinatorTabLayout extends CoordinatorLayout {
         mCollapsingToolbarLayout = (CollapsingToolbarLayout) findViewById(R.id.collapsingtoolbarlayout);
         mTabLayout = (TabLayout) findViewById(R.id.tabLayout);
         mImageView = (ImageView) findViewById(R.id.imageview);
+        appBarLayout = (AppBarLayout) findViewById(R.id.appBarLayout);
     }
 
     private void initWidget(Context context, AttributeSet attrs) {
@@ -93,7 +98,7 @@ public class CoordinatorTabLayout extends CoordinatorLayout {
      */
     public CoordinatorTabLayout setTitle(String title) {
         if (mActionbar != null) {
-            mActionbar.setTitle(title);
+            mActionbar.setTitle("");
         }
         return this;
     }
@@ -105,8 +110,8 @@ public class CoordinatorTabLayout extends CoordinatorLayout {
      */
     public CoordinatorTabLayout setBackEnable(Boolean canBack) {
         if (canBack && mActionbar != null) {
-            mActionbar.setDisplayHomeAsUpEnabled(true);
-            mActionbar.setHomeAsUpIndicator(R.drawable.ic_arrow_white_24dp);
+            //mActionbar.setDisplayHomeAsUpEnabled(true);
+            //mActionbar.setHomeAsUpIndicator(R.drawable.ic_arrow_white_24dp);
         }
         return this;
     }
@@ -148,6 +153,7 @@ public class CoordinatorTabLayout extends CoordinatorLayout {
                     mCollapsingToolbarLayout.setContentScrimColor(
                             ContextCompat.getColor(
                                     mContext, colorArray[tab.getPosition()]));
+                    StatusBarCompat.setStatusBarColorForCollapsingToolbar((Activity) mContext,appBarLayout,mCollapsingToolbarLayout,mToolbar,colorArray[tab.getPosition()]);
                 }
                 mImageView.setAnimation(AnimationUtils.loadAnimation(mContext, R.anim.anim_show));
             }
